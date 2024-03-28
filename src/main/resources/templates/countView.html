@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Record Count</title>
+</head>
+<body>
+<h1><p th:text="${count}"></p></h1>
+
+<!--<div th:if="${numCount}" class="alert alert-success" role="alert">-->
+<!--    <p th:text="${numCount}"></p>-->
+<!--</div>-->
+<!--<div th:if="${successMessage}" class="alert alert-success" role="alert">-->
+<!--    <p th:text="${successMessage}"></p>-->
+<!--</div>-->
+
+<!--<h1>Total Records: {{ recordCount }}</h1>-->
+<h1>Hello This is test</h1>
+
+<div th:if="${#lists.size(movieList) != 0}" th:each="movie, iterStat: ${movieList}">
+    <!--        <h3 th:href="@{'/movie/'+ ${iterStat.count}}" th:text="${iterStat.count + '.' + ' ' + movie.name}">Movie name</h3>-->
+    <a
+            th:href=" @{ /movie-detail (id=${iterStat.count}) }"
+            th:text="${iterStat.count + '.' + ' ' + movie.name}"
+            class="list-group-item list-group-item-action"> <!-- http://localhost:8080/movie?id=1 -->
+    </a>
+</div>
+</body>
+</html>

@@ -57,6 +57,19 @@
             font-size: 20px;
             cursor: pointer; /* Add hover effect (optional) */
         }
+
+        .alert-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #4CAF50;
+    color: white;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+}
+
     </style>
 
     <title>Spring Boot</title>
@@ -110,7 +123,7 @@
 
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="label label-pill label-danger count" style="border-radius:10px;"></span><span class="glyphicon glyphicon-bell" style="font-size:18px;"></span></a>
+                        <a th:href="@{/notificationList}" class="dropdown-toggle" data-toggle="dropdown"><span class="label label-pill label-danger count" style="border-radius:10px;" th:text="${count}"></span><span class="glyphicon glyphicon-bell" style="font-size:18px;"></span></a>
                         <ul class="dropdown-menu">
                             <li>Demo</li>
                         </ul>
@@ -146,22 +159,22 @@
             <form th:action="@{/register}" th:object="${user}" method="post">
                 <div class="mb-3">
                     <label for="exampleInputName1" class="form-label">Name</label>
-                    <input type="text" class="form-control" id="exampleInputName1" name="name">
+                    <input type="text" class="form-control" id="exampleInputName1" name="name" required>
 
                 </div>
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Employee ID</label>
-                    <input type="text" class="form-control" id="exampleInputEmployeeId1" name="empId">
+                    <input type="text" class="form-control" id="exampleInputEmployeeId1" name="empId" required>
                 </div>
 
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" name="email">
+                    <input type="email" class="form-control" id="exampleInputEmail1" name="email" required>
                 </div>
 
                 <div class="mb-3">
                     <label>Enter Details</label>
-                    <textarea name="details" id="exampleInputDetails1" class="form-control" rows="8"></textarea>
+                    <textarea name="details" id="exampleInputDetails1" class="form-control" rows="8" required></textarea>
                 </div>
 
                 <button type="submit" class="btn btn-danger">Submit</button>
@@ -169,6 +182,16 @@
         </div>
 
     <!--form eld-->
+
+        <div th:if="${successMessage}" class="alert alert-success" role="alert">
+            <p align="center" th:text="${successMessage}"></p>
+        </div>
+
+    <h1><p th:text="${count}"></p></h1>
+
+    <h1>Variable Value:</h1>
+    <!-- Use Thymeleaf expression to display the variable value -->
+    <p th:text="${variableValue}"></p>
 
 
 
